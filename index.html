@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflection Narrative on Data Privacy & Cybersecurity</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Space Grotesk", sans-serif;
+            background-image: url(download\ \(1\).gif);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            height: 100vh;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        /* Centering the container */
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh; /* Adjusts vertical height to center */
+            text-align: center;
+        }
+
+        .container {
+            width: 60%; /* Adjust width as needed */
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.685);
+            backdrop-filter: blur(2px);
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #navButtons {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Page 1 Content -->
+        <div id="page1" class="container">
+            <h1>Reflection Narrative: Data Privacy & Cybersecurity - Part 1</h1>
+            <div id="reflection1"></div>
+        </div>
+
+        <!-- Page 2 Content -->
+        <div id="page2" class="container" style="display: none;">
+            <h1>Reflection Narrative: Data Privacy & Cybersecurity - Part 2</h1>
+            <div id="reflection2"></div>
+        </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div id="navButtons">
+        <button id="prevButton" style="display: none;">Previous</button>
+        <button id="nextButton">Next</button>
+    </div>
+
+    <py-script>
+        # Split essay content into two parts
+        essay_part1 = """
+        My evaluation on the seminar that happened this October 8 is good. The speakers were very clear from beginning to end and I was able to understand the words that came out of their mouths. The flow of the seminar was also engaging as I was able to listen from the beginning till the end of the seminar and overall the seminar wasn't boring and it was great and all. To the contents of the seminar they were very informative and everyone probably see what the importance of data privacy and cybersecurity. Nowadays, as technology grows, the more risk we get cyberattacked because of the power that we hold in our era is strong, as in a matter of a click of our finger, we can already see a countless of data information of someone and the more technology advanced the more crimes might be harder to track. But, the opposite might also happen as technology can lead us to the betterment of our future or worse, it might lead us on our extinction as we get more opportunity to be better or cheat our way to life using them. Thus, corrupting our minds into committing evil deeds for the sake of earning ourselves' greed, envy or lust a relief, which is sad. By knowing our rights is our only way to combat the mishaps parts of the technological advancement and learning a few laws wouldn’t definitely hurt us, as we can use them to protect ourselves and by learning this information gave my doubts on my privacy's future a little sense of a relief because I can somewhat avoid such scenarios of getting cyberattacked or accidentally hurting someone's feelings.
+        """
+
+        essay_part2 = """
+        There were lots of kinds of cyberattack that was discussed in the seminar and the more I hear about them, I can't calm myself as people's mind can be very scary and ruthless sometimes. They commit these atrocious actions just because of their lust, envy and greediness. The laws that were mention in the seminar are Republic Act 10173 and Republic Act 10175. The features that RA 10173 were very informative and helpful to know our rights when it comes to data privacy. It can mostly help us to secure our information from leaking, spreading or what should we do when it already happens as the law is there to back us up. The law already stated and  provided us the scenarios of cases of cyberattack and we should learn to avoid these by increasing our security and providing limited information. The act also includes the consequences of what our actions might lead us into, the liabilities that might happens and such. Moving into the RA 10175, the act mostly featured about law enforcement authorities such as NBI and PNP, they shall be responsible for efficiently conducting investigations and law enforcement of the provision of the act 10175, which is the function of it. The punishable acts of this law are Illegal Access, Illegal Interception, Data Interference, System Interference and Misuse of Devices. Committing this crimes will lead you to jail, so its better to avoid them instead and just live fair even if life is not fair. Overall, the seminar is good and it gave the me the gist of what is data privacy and cybersecurity.
+        """
+
+        # Function to load content into the respective pages
+        def load_essay_pages():
+            reflection1 = Element("reflection1")
+            reflection2 = Element("reflection2")
+
+            # Write the content into the two div containers
+            reflection1.write(essay_part1)
+            reflection2.write(essay_part2)
+
+        load_essay_pages()  # Load the essay content when the page is loaded
+
+        # Function to navigate between the pages
+        def navigate_page(direction):
+            page1 = document.getElementById("page1")
+            page2 = document.getElementById("page2")
+            prev_button = document.getElementById("prevButton")
+            next_button = document.getElementById("nextButton")
+
+            # Check if navigating to the next page
+            if direction == "next":
+                page1.style.display = "none"
+                page2.style.display = "block"
+                prev_button.style.display = "inline-block"  # Show the Previous button
+                next_button.style.display = "none"  # Hide the Next button
+            else:
+                page1.style.display = "block"
+                page2.style.display = "none"
+                prev_button.style.display = "none"  # Hide the Previous button
+                next_button.style.display = "inline-block"  # Show the Next button
+
+        # Attach event listeners to the buttons using JavaScript
+        def setup_buttons():
+            # Get the buttons
+            next_button = document.getElementById("nextButton")
+            prev_button = document.getElementById("prevButton")
+
+            # Define the event listener functions
+            next_button.onclick = lambda e: navigate_page("next")
+            prev_button.onclick = lambda e: navigate_page("prev")
+
+        # Call the setup function to attach the event listeners
+        setup_buttons()
+    </py-script>
+</body>
+</html>
